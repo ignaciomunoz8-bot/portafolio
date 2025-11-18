@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+   <!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova  XP</title>
@@ -206,43 +209,18 @@
             <a href="#" class="btn-neon" onclick="abrirRegistro()">Registrate  </a>
         </nav>
     </header>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginTab = document.getElementById('login-tab');
-            const registerTab = document.getElementById('register-tab');
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
 
-            loginTab.addEventListener('click', function(e) {
-                e.preventDefault();
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-            });
+   
+    <main id="inicio">
 
-            registerTab.addEventListener('click', function(e) {
-                e.preventDefault();
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                registerForm.classList.remove('hidden');
-                loginForm.classList.add('hidden');
-            });
-        });
-    </script>
+        <section class="hero">
+            <p>Descubre los últimos lanzamientos del mundo gamer</p>
+            <a href="#juegos" class="btn-primary">Explorar Juegos</a>
+        </section>
 
-    <form class="auth-form hidden" id="register-form">
-        <label for="register-email">Correo Electrónico</label>
-        <input type="email" id="register-email" placeholder="Introduce tu email" required>
-
-        <label for="register-password">Contraseña</label>
-        <input type="password" id="register-password" placeholder="Crea tu contraseña" required>
-
-        <label for="confirm-password">Confirmar Contraseña</label>
-        <input type="password" id="confirm-password" placeholder="Confirma tu contraseña" required>
-
-        <button type="submit" class="neon-button">CREAR CUENTA</button>
-    </form>
+        <section class="search-bar">
+            <input type="search" placeholder="Buscar por título, género o plataforma...">
+        </section>
 </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -612,5 +590,6 @@
 </button>
 </body>
 </html>
+
 
 
