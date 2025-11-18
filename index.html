@@ -252,6 +252,174 @@
             }
         }
         }
+                body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #1a1a2e;
+            color: #e5e5e5;
+            margin: 0;
+            padding: 0;
+        }
+
+     
+        .header {
+            background-color: #0f0f1a;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #00f0ff;
+        }
+        .header h1 {
+            color: #ff00ff;
+            margin: 0;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        .header a {
+            color: #00f0ff;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+       
+        .btn-neon, .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px #ff00ff;
+            transition: 0.3s;
+            background: transparent;
+        }
+        .btn-neon:hover, .btn-primary:hover {
+            background-color: #ff00ff;
+            color: #1a1a2e;
+            box-shadow: 0 0 20px #ff00ff;
+        }
+
+       
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .modal-content {
+            background: #0f0f1a;
+            width: 380px;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 0 25px #ff00ff;
+            animation: abrir .3s ease-out;
+        }
+        @keyframes abrir {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            color: #00f0ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #00f0ff;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #ff00ff;
+            color: #0f0f1a;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 12px #ff00ff;
+        }
+
+       
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(26,26,46,0.7), rgba(26,26,46,0.7)),
+                url('https://via.placeholder.com/1200x500?text=Gaming+Background') center / cover;
+        }
+        .search-bar {
+            text-align: center;
+            background: #131320;
+            padding: 30px;
+        }
+        .search-bar input {
+            width: 80%;
+            max-width: 600px;
+            padding: 10px 15px;
+            border: 2px solid #ff00ff;
+            background: #0f0f1a;
+            color: #00f0ff;
+        }
+        .product-grid {
+            background: #131320;
+            padding: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+        }
+        .product-grid h2 {
+            width: 100%;
+            text-align: center;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            border-bottom: 1px solid rgba(255,0,255,0.5);
+            padding-bottom: 10px;
+        }
+        .product-card {
+            background: #222238;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0,240,255,0.3);
+            transition: 0.3s;
+        }
+        .product-card img {
+            width: 100%;
+            border-bottom: 2px solid #ff00ff;
+            margin-bottom: 15px;
+        }
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 0 30px #ff00ff;
+        }
+
+        .footer {
+            background: #0f0f1a;
+            border-top: 2px solid #ff00ff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
     </style>
 </head>
 
@@ -403,6 +571,7 @@
 </button>
 </body>
 </html>
+
 
 
 
