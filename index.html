@@ -302,13 +302,30 @@
         </section>
 
     </main>
+    <script>
+        const modalRegistro = document.getElementById("modalRegistro");
 
+        function abrirRegistro() {
+            modalRegistro.style.display = "flex";
+        }
+
+        function cerrarRegistro() {
+            modalRegistro.style.display = "none";
+        }
+
+        window.onclick = function(e) {
+            if (e.target === modalRegistro) {
+                cerrarRegistro();
+            }
+        }
+    </script>
     <footer class="footer">
         <p>© 2025 Game Zone. Todos los derechos reservados.</p>
     </footer>
 </button>
 </body>
 </html>
+
 
 
 
