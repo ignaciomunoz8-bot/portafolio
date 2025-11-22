@@ -11,13 +11,11 @@
         /* BASE & TIPOGRAFÍA */
         /* ------------------------------------------- */
         body {
-            /* Fuente Orbitron para encabezados, Roboto Mono para el texto base */
             font-family: 'Roboto Mono', monospace; 
-            background-color: #0d0c1b; /* Fondo aún más oscuro */
-            color: #d1d1e0; /* Color de texto más suave */
+            background-color: #0d0c1b;
+            color: #d1d1e0;
             margin: 0;
             padding: 0;
-            /* Patrón de circuito de fondo (simulado) */
             background-image: repeating-linear-gradient(0deg, #1a1a2e, #1a1a2e 1px, transparent 1px, transparent 20px),
                               repeating-linear-gradient(90deg, #1a1a2e, #1a1a2e 1px, transparent 1px, transparent 20px);
             background-size: 20px 20px;
@@ -37,13 +35,20 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 3px solid #00f0ff;
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.2); /* Sombra suave */
+            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.2);
         }
         
+        .header .logo-container img {
+            width: 60px;
+            height: 30px;
+            margin-right: 15px;
+        }
+
         .header h1 {
             color: #ff00ff;
             text-shadow: 0 0 15px #ff00ff;
             font-weight: 700;
+            margin: 0;
         }
 
         .header a {
@@ -86,6 +91,26 @@
         }
 
         /* ------------------------------------------- */
+        /* HERO SECTION */
+        /* ------------------------------------------- */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(13, 12, 27, 0.85), rgba(13, 12, 27, 0.85)), url('https://via.placeholder.com/1200x500?text=Gaming+Background') center / cover no-repeat;
+        }
+
+        .hero h2 {
+            font-size: 3.5em;
+            color: #00f0ff;
+            text-shadow: 0 0 20px #00f0ff;
+            margin-bottom: 10px;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        /* ------------------------------------------- */
         /* BOTONES (NEON BUTTONS) */
         /* ------------------------------------------- */
         .btn-primary, .btn-neon {
@@ -112,7 +137,7 @@
             transform: scale(1.05);
         }
         
-        .btn-secondary-neon { /* Para el botón "Volver a la lista" */
+        .btn-secondary-neon {
             border-color: #00f0ff;
             color: #00f0ff;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
@@ -124,7 +149,6 @@
             box-shadow: 0 0 25px #00f0ff;
         }
 
-
         /* ------------------------------------------- */
         /* GRID DE PRODUCTOS (PRODUCT-GRID) */
         /* ------------------------------------------- */
@@ -133,7 +157,7 @@
             justify-content: center;
             gap: 30px;
             padding: 50px 20px;
-            background-color: #1a1a2e; /* Cambié el fondo para mejor contraste */
+            background-color: #1a1a2e;
             flex-wrap: wrap;
         }
 
@@ -150,15 +174,16 @@
         .product-card {
             background-color: #0f0f1a;
             text-align: center;
-            padding: 0; /* Quitamos padding aquí para moverlo a la imagen/texto */
+            padding: 0;
             border-radius: 10px;
-            width: 320px; /* Ancho fijo para uniformidad */
+            width: 320px;
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             border: 2px solid #00f0ff;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .product-card:hover {
@@ -168,9 +193,8 @@
 
         .product-card img {
             width: 100%;
-            /* Ajustamos la altura para uniformidad en el grid */
             height: 200px; 
-            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            object-fit: cover;
             border-bottom: 2px solid #ff00ff;
             margin-bottom: 0;
         }
@@ -179,7 +203,7 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+            flex-grow: 1;
             justify-content: space-between;
         }
 
@@ -195,19 +219,34 @@
             font-weight: bold;
             margin-top: 10px;
         }
+        
+        .etiqueta-lanzamiento {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff00ff;
+            color: #1a1a2e;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+            z-index: 10;
+            border-radius: 4px;
+            box-shadow: 0 0 10px #00f0ff;
+            clip-path: none; /* Asegurar que no tenga el clip-path de cinta */
+        }
+
 
         /* ------------------------------------------- */
         /* SECCIÓN DE DETALLE DE JUEGO (CYBERPUNK) */
         /* ------------------------------------------- */
         .detalle-container {
             padding: 50px;
-            max-width: 1200px; /* Más ancho para un mejor layout */
+            max-width: 1200px;
             margin: 50px auto;
-            background-color: #131320; /* Fondo más oscuro */
+            background-color: #131320;
             border: 3px solid #ff00ff;
             border-radius: 15px;
             box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
-            /* Patrón de circuito de fondo para esta sección */
             background-image: radial-gradient(#222238 1px, transparent 0);
             background-size: 40px 40px;
             background-color: #131320;
@@ -225,13 +264,11 @@
         .info-grid {
             display: flex;
             gap: 40px;
-            align-items: flex-start; /* Alinea la parte superior de la imagen y texto */
-            flex-wrap: nowrap; /* Evita que las columnas se envuelvan a menos que la pantalla sea pequeña */
+            align-items: flex-start;
+            flex-wrap: nowrap;
         }
         
-        /* SOLUCIÓN para la imagen "ancha" */
         .info-grid img {
-            /* Definimos un ancho fijo para que la imagen se vea bien y no domine la pantalla */
             width: 35%; /* La imagen ocupará un 35% del contenedor */
             max-width: 450px;
             height: auto;
@@ -247,7 +284,7 @@
         }
         
         .descripcion {
-            flex: 1; /* El texto ocupa el resto del espacio */
+            flex: 1;
             padding: 10px 0;
         }
         
@@ -268,10 +305,13 @@
         }
         
         .especificaciones {
+            list-style: none;
+            padding-left: 0;
             font-size: 1.1em;
         }
         
         .especificaciones li {
+            margin-bottom: 10px;
             color: #00f0ff;
         }
         
@@ -283,16 +323,115 @@
         }
 
         /* ------------------------------------------- */
+        /* FOOTER */
+        /* ------------------------------------------- */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0f0f1a;
+            border-top: 2px solid #ff00ff;
+            font-size: 0.8em;
+        }
+
+        /* ------------------------------------------- */
+        /* MODAL (REGISTRO/LOGIN) - REVERTIDO A CENTRADO */
+        /* ------------------------------------------- */
+        .modal {
+            /* REVERTIDO: Vuelve a ser oculto y centrado en toda la ventana */
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85); /* Fondo oscuro más denso */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #0f0f1a;
+            width: 400px;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px #ff00ff;
+            animation: abrir .3s ease-out;
+            box-sizing: border-box;
+            border: 2px solid #00f0ff;
+        }
+
+        @keyframes abrir {
+            from {transform: scale(0.7); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close {
+            float: right;
+            font-size: 30px;
+            cursor: pointer;
+            color: #ff00ff;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #fff;
+        }
+
+        .modal-content h2 {
+            color: #00f0ff;
+            margin-bottom: 25px;
+            text-align: center;
+            margin-top: 0;
+            text-shadow: 0 0 8px #00f0ff;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ff00ff;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #fff;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 1em;
+            box-shadow: inset 0 0 5px rgba(255, 0, 255, 0.3);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background: #ff00ff;
+            color: #0f0f1a;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff00ff;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn-submit:hover {
+            background: #fff;
+            box-shadow: 0 0 25px #ff00ff, 0 0 10px #00f0ff;
+        }
+
+        /* ------------------------------------------- */
         /* RESPONSIVE DESIGN (Móviles/Tablets) */
         /* ------------------------------------------- */
         @media (max-width: 900px) {
             .info-grid {
-                flex-direction: column; /* Apila la imagen y el texto en pantallas pequeñas */
+                flex-direction: column;
                 align-items: center;
             }
             
             .info-grid img {
-                width: 80%; /* La imagen ocupa más espacio cuando está sola */
+                width: 80%;
                 margin-bottom: 20px;
             }
 
@@ -314,6 +453,10 @@
             .product-card {
                 width: 100%;
                 max-width: 400px;
+            }
+            
+            .modal-content {
+                width: 90%;
             }
         }
     </style>
@@ -343,7 +486,7 @@
             <a href="#inicio">Inicio</a>
             <a href="#juegos">Juegos</a>
             <a href="#ofertas" class="btn-neon"> Ofertas</a>
-            <a href="#" class="btn-neon" onclick="abrirRegistro()">Registrate </a>
+            <a href="#" class="btn-neon" onclick="abrirRegistro()">Regístrate </a>
         </nav>
     </header>
 
@@ -428,7 +571,7 @@
                     <h3>Goat Simulator 3</h3>
                     <p style="text-decoration: line-through; color: #7f7f99; margin-top: 10px; margin-bottom: 0;">$15.00</p>
                     <p class="precio">$6.20</p>
-                    <span class="etiqueta-lanzamiento" style="background-color: #00f0ff; color: #1a1a2e; box-shadow: 0 0 10px #00f0ff; top: 15px; right: 15px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); border-radius: 4px;">¡BARATO!</span>
+                    <span class="etiqueta-lanzamiento" style="background-color: #00f0ff; color: #1a1a2e; box-shadow: 0 0 10px #00f0ff;">¡BARATO!</span>
                     <a class="btn-neon" href="https://store.steampowered.com/app/850190/Goat_Simulator_3/">Comprar</a>
                 </div>
             </div>
@@ -459,7 +602,6 @@
     </main>
     
     <script>
-        // Mantuve el script original, solo moví la definición de la variable.
         const modalRegistro = document.getElementById("modalRegistro");
 
         function abrirRegistro() {
