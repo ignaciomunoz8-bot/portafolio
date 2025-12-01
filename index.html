@@ -3,593 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova XP</title>
+    <title>TechSolutions - Soluciones Tecnológicas</title>
     
+    <!-- LIBRERÍAS EXTERNAS (Necesarias para que funcione sin instalar nada) -->
+    <!-- React y ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel (Para entender código moderno) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS (Para el diseño) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Estilos extra -->
     <style>
-        body {
-            font-family: 'Roboto Mono', monospace; 
-            background-color: #0d0c1b;
-            color: #d1d1e0;
-            margin: 0;
-            padding: 0;
-            background-image: repeating-linear-gradient(0deg, #1a1a2e, #1a1a2e 1px, transparent 1px, transparent 20px),
-                              repeating-linear-gradient(90deg, #1a1a2e, #1a1a2e 1px, transparent 1px, transparent 20px);
-            background-size: 20px 20px;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Orbitron', sans-serif;
-        }
-        .header {
-            background-color: #0f0f1a;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #00f0ff;
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.2);
-        }
-        
-        .header .logo-container img {
-            width: 60px;
-            height: 30px;
-            margin-right: 15px;
-        }
-
-        .header h1 {
-            color: #ff00ff;
-            text-shadow: 0 0 15px #ff00ff;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .header a {
-            color: #00f0ff;
-            text-decoration: none;
-            margin-left: 30px;
-            padding: 5px 10px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-        }
-
-        .header a:hover {
-            color: #fff;
-            background-color: #00f0ff;
-            text-shadow: none;
-            box-shadow: 0 0 15px #00f0ff;
-        }
-        .search-bar {
-            text-align: center;
-            padding: 30px;
-            background-color: #131320;
-            border-bottom: 1px solid #ff00ff;
-        }
-
-        .search-bar input[type="search"] {
-            padding: 12px 20px;
-            width: 80%;
-            max-width: 700px;
-            border: 2px solid #ff00ff;
-            background-color: #0f0f1a;
-            color: #00f0ff;
-            font-family: inherit;
-            font-size: 1.1em;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(13, 12, 27, 0.85), rgba(13, 12, 27, 0.85)), url('https://via.placeholder.com/1200x500?text=Gaming+Background') center / cover no-repeat;
-        }
-
-        .hero h2 {
-            font-size: 3.5em;
-            color: #00f0ff;
-            text-shadow: 0 0 20px #00f0ff;
-            margin-bottom: 10px;
-        }
-        
-        .hero p {
-            font-size: 1.2em;
-        }
-
-        .btn-primary, .btn-neon {
-            display: inline-block;
-            padding: 12px 25px;
-            margin: 10px 10px 10px 0;
-            border: 2px solid #ff00ff;
-            background-color: transparent;
-            color: #ff00ff;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
-            border-radius: 3px;
-            font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary:hover, .btn-neon:hover {
-            background-color: #ff00ff;
-            color: #0d0c1b;
-            box-shadow: 0 0 25px #ff00ff;
-            transform: scale(1.05);
-        }
-        
-        .btn-secondary-neon {
-            border-color: #00f0ff;
-            color: #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
-        }
-        
-        .btn-secondary-neon:hover {
-            background-color: #00f0ff;
-            color: #0d0c1b;
-            box-shadow: 0 0 25px #00f0ff;
-        }
-        .product-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 50px 20px;
-            background-color: #1a1a2e;
-            flex-wrap: wrap;
-        }
-
-        .product-grid h2 {
-            width: 100%;
-            text-align: center;
-            color: #ff00ff;
-            text-shadow: 0 0 12px #ff00ff;
-            margin-bottom: 40px;
-            border-bottom: 2px solid rgba(255, 0, 255, 0.5);
-            padding-bottom: 15px;
-        }
-
-        .product-card {
-            background-color: #0f0f1a;
-            text-align: center;
-            padding: 0;
-            border-radius: 10px;
-            width: 320px;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid #00f0ff;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px #ff00ff, 0 0 10px #00f0ff;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px; 
-            object-fit: cover;
-            border-bottom: 2px solid #ff00ff;
-            margin-bottom: 0;
-        }
-        
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .product-card h3 {
-            color: #00f0ff;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .product-card .precio {
-            font-size: 1.8em;
-            color: #ff00ff;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .etiqueta-lanzamiento {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #ff00ff;
-            color: #1a1a2e;
-            padding: 5px 10px;
-            font-size: 0.8em;
-            font-weight: bold;
-            z-index: 10;
-            border-radius: 4px;
-            box-shadow: 0 0 10px #00f0ff;
-            clip-path: none; 
-        }
-
-        .detalle-container {
-            padding: 50px;
-            max-width: 1200px;
-            margin: 50px auto;
-            background-color: #131320;
-            border: 3px solid #ff00ff;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
-            background-image: radial-gradient(#222238 1px, transparent 0);
-            background-size: 40px 40px;
-            background-color: #131320;
-        }
-
-        .detalle-container h2 {
-            color: #00f0ff;
-            text-shadow: 0 0 10px #00f0ff;
-            border-bottom: 2px solid rgba(0, 240, 255, 0.5);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .info-grid {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            flex-wrap: nowrap;
-        }
-        
-        .info-grid img {
-            width: 35%;
-            max-width: 450px;
-            height: auto;
-            object-fit: cover;
-            border: 4px solid #ff00ff;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        
-        .info-grid img:hover {
-            transform: scale(1.01);
-        }
-        
-        .descripcion {
-            flex: 1;
-            padding: 10px 0;
-        }
-        
-        .descripcion strong {
-            color: #00f0ff;
-        }
-
-        .descripcion p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .descripcion h3 {
-            color: #ff00ff;
-            margin-top: 30px;
-            border-bottom: 1px dashed rgba(255, 0, 255, 0.4);
-            padding-bottom: 5px;
-        }
-        
-        .especificaciones {
-            list-style: none;
-            padding-left: 0;
-            font-size: 1.1em;
-        }
-        
-        .especificaciones li {
-            margin-bottom: 10px;
-            color: #00f0ff;
-        }
-        
-        .precio {
-            font-size: 1.8em;
-            color: #ff00ff;
-            font-weight: bold;
-            text-shadow: 0 0 8px #ff00ff;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0f0f1a;
-            border-top: 2px solid #ff00ff;
-            font-size: 0.8em;
-        }
-
-        .modal {
-            display: none; 
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85); 
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .modal-content {
-            background: #0f0f1a;
-            width: 400px;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 0 30px #ff00ff;
-            animation: abrir .3s ease-out;
-            box-sizing: border-box;
-            border: 2px solid #00f0ff;
-        }
-
-        @keyframes abrir {
-            from {transform: scale(0.7); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
-        }
-
-        .close {
-            float: right;
-            font-size: 30px;
-            cursor: pointer;
-            color: #ff00ff;
-            transition: color 0.3s;
-        }
-        
-        .close:hover {
-            color: #fff;
-        }
-
-        .modal-content h2 {
-            color: #00f0ff;
-            margin-bottom: 25px;
-            text-align: center;
-            margin-top: 0;
-            text-shadow: 0 0 8px #00f0ff;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #ff00ff;
-            border-radius: 8px;
-            background: #1a1a2e;
-            color: #fff;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 1em;
-            box-shadow: inset 0 0 5px rgba(255, 0, 255, 0.3);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 8px;
-            background: #ff00ff;
-            color: #0f0f1a;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 15px #ff00ff;
-            text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-        
-        .btn-submit:hover {
-            background: #fff;
-            box-shadow: 0 0 25px #ff00ff, 0 0 10px #00f0ff;
-        }
-        @media (max-width: 900px) {
-            .info-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .info-grid img {
-                width: 80%;
-                margin-bottom: 20px;
-            }
-
-            .detalle-container {
-                padding: 30px;
-                margin: 30px 15px;
-            }
-            
-            .header {
-                flex-direction: column;
-                padding: 20px;
-            }
-            
-            .header nav {
-                margin-top: 15px;
-                text-align: center;
-            }
-            
-            .product-card {
-                width: 100%;
-                max-width: 400px;
-            }
-            
-            .modal-content {
-                width: 90%;
-            }
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-
 <body>
-    
-   
-    <div id="modalRegistro" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarRegistro()">&times;</span>
-            <h2>Crear Cuenta</h2>
-            <input type="text" placeholder="Nombre de usuario" required>
-            <input type="email" placeholder="Correo electrónico" required>
-            <input type="password" placeholder="Contraseña" required>
-            <input type="password" placeholder="Confirmar contraseña" required>
-            <button class="btn-submit">Registrarse</button>
-        </div>
-        </div>
-    </div>
-    <header class="header">
-        <div class="logo-container">
-            <h1>NOVA XP</h1>
-        </div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#juegos">Juegos</a>
-            <a href="#ofertas" class="btn-neon"> Ofertas</a>
-            <a href="#" class="btn-neon" onclick="abrirRegistro()">Regístrate </a>
-        </nav>
-    </header>
 
-    
-    <main id="inicio">
-    
-        <section class="hero">
-            <h2>BIENVENIDO A NOVA XP</h2>
-            <p>Descubre los últimos lanzamientos del mundo gamer</p>
-            <a href="#juegos" class="btn-primary">Explorar Juegos</a>
-        </section>
+    <!-- Aquí se montará la aplicación -->
+    <div id="root"></div>
 
-        <section class="search-bar">
-            <input type="search" placeholder="Buscar por título, género o plataforma...">
-        </section>
-
-        <section id="juegos" class="product-grid">
-            <h2>Últimos Lanzamientos</h2>
-
-            <div class="product-card">
-                <img src="https://th.bing.com/th?id=OPHS.3qpK%2fNQgAV3gJQ474C474&w=592&h=550&o=5&dpr=1.3&pid=21.1" alt="Elden Ring" width="320" height="200">
-                <div class="product-info">
-                    <h3>Elden Ring</h3>
-                    <p class="precio">$49.99</p>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/1245620/Elden_Ring/">Comprar</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://juegosdigitaleschile.com/files/images/productos/1718034316-dragon-ball-sparking-zero-pre-orden-0.webp" alt="DBZ Sparking Zero" width="320" height="200">
-                <div class="product-info">
-                    <h3>DBZ Sparking Zero</h3>
-                    <p class="precio">$49.99</p>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/1790600/DRAGON_BALL_Sparking_ZERO/">Comprar</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/bc16ea353339f1c8aeea17d96383aafc57b9387bd5e5934f.png" alt="The Last of Us" width="320" height="200">
-                <div class="product-info">
-                    <h3>The Last of Us Remasterizado</h3>
-                    <p class="precio">$35.00</p>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/1901960/The_Last_of_Us_Part_I/">Comprar</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn1.epicgames.com/offer/e3e1dbeede5a471c9932edb2f7b99f51/EGS_Outlast2_RedBarrels_S2_1200x1600-b84f788e04780de2edf02ac003246e4b" alt="Outlast 2" width="320" height="200">
-                <div class="product-info">
-                    <h3>Outlast 2</h3>
-                    <p class="precio">$10.50</p>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/414700/Outlast_2/">Comprar</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://owp.klarna.com/product/1280x1280/3226293771/FC-26-(PS5).jpg?ph=true" alt="FC 26" width="320" height="200">
-                <div class="product-info">
-                    <h3>FC 26</h3>
-                    <p class="precio">$62.90</p>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/3405690/EA_SPORTS_FC_26/">Comprar</a>
-                </div>
-            </div>
-        </section>
+    <!-- CÓDIGO DE LA APLICACIÓN -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
         
-        <section id="ofertas" class="product-grid" style="background-color: #0f0f1a;">
-            <h2> Ofertas Exclusivas </h2>
-            
-            <div class="product-card">
-                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/bd3771d9a3827610b2742de13d8552918008c302/header_alt_assets_2.jpg?t=1762370967" alt="Peak" width="320" height="200">
-                <div class="product-info">
-                    <h3>Peak</h3>
-                    <p style="text-decoration: line-through; color: #7f7f99; margin-top: 10px; margin-bottom: 0;">$4.20</p>
-                    <p class="precio">$2.60</p>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/3527290/PEAK/">Comprar</a>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/850190/8d86157e7fb48b963d95879e81b97ff9f7b619d5/header.jpg?t=1763042625" alt="Goat Simulator 3" width="320" height="200">
-                <div class="product-info">
-                    <h3>Goat Simulator 3</h3>
-                    <p style="text-decoration: line-through; color: #7f7f99; margin-top: 10px; margin-bottom: 0;">$15.00</p>
-                    <p class="precio">$6.20</p>
-                    <span class="etiqueta-lanzamiento" style="background-color: #00f0ff; color: #1a1a2e; box-shadow: 0 0 10px #00f0ff;">¡BARATO!</span>
-                    <a class="btn-neon" href="https://store.steampowered.com/app/850190/Goat_Simulator_3/">Comprar</a>
-                </div>
-            </div>
-        </section>
-        
-        <section id="detalle-cyber" class="detalle-container">
-            <h2>Cyber Punk 2077 - Detalle del Juego</h2>
-            
-            <div class="info-grid">
-                <img src="https://img.tamindir.com/2023/09/476730/cyberpunk-2077-hakkinda.jpg" alt="Imagen de Cyber Fusion 2077">
-                
-                <div class="descripcion">
-                    <p><strong>Precio:</strong> <span class="precio">$39.99 USD</span></p>
-                    <p>Sumérgete en un mundo distópico de neón y tecnología. Este RPG de acción en mundo abierto permite que tus decisiones moldeen el destino de Night City. Explora vastas y vibrantes áreas, interactúa con personajes complejos y lucha en un sistema de combate visceral.</p>
+        // --- 1. DATOS SIMULADOS (BASE DE DATOS) ---
+        const PRODUCTS_DB = [
+            { id: 1, name: "Laptop Enterprise X1", price: 1200, category: "Computación", img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80" },
+            { id: 2, name: "Smartphone Pro Max", price: 950, category: "Móviles", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80" },
+            { id: 3, name: "Auriculares Studio", price: 200, category: "Audio", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80" },
+            { id: 4, name: "Monitor 4K Ultra", price: 400, category: "Computación", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80" },
+            { id: 5, name: "Teclado Mecánico", price: 120, category: "Accesorios", img: "https://images.unsplash.com/photo-1587829741301-dc798b91a603?w=400&q=80" },
+            { id: 6, name: "Tablet Gráfica", price: 350, category: "Diseño", img: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&q=80" },
+            { id: 7, name: "Cámara DSLR", price: 850, category: "Fotografía", img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80" },
+            { id: 8, name: "Smart Watch V2", price: 180, category: "Accesorios", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" }
+        ];
+
+        // --- 2. COMPONENTES ---
+
+        // Componente: Barra de Navegación
+        const Navbar = ({ user, setPage, cartCount, onLogout }) => (
+            <nav className="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
+                <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+                    <div className="text-2xl font-bold cursor-pointer flex items-center gap-2" onClick={() => setPage('home')}>
+                        <span className="text-blue-400">Tech</span>Corp
+                    </div>
                     
-                    <h3>Especificaciones Clave:</h3>
-                    <ul class="especificaciones">
-                        <li>Género: RPG de Acción / Mundo Abierto</li>
-                        <li>Plataformas: PC, Consolas de Última Generación (PS5, Xbox Series X/S)</li>
-                        <li>Modo de Juego: Un Jugador</li>
-                    </ul>
-                    <a href="https://store.steampowered.com/agecheck/app/1091500/?l=spanish" class="btn-primary btn-neon">Comprar Ahora</a>
-                    <a href="#juegos" class="btn-primary btn-secondary-neon">Volver a la lista</a>
+                    <div className="hidden md:flex gap-8 font-medium">
+                        <button onClick={() => setPage('home')} className="hover:text-blue-400 transition">Inicio</button>
+                        <button onClick={() => setPage('catalog')} className="hover:text-blue-400 transition">Catálogo</button>
+                        <button onClick={() => setPage('contact')} className="hover:text-blue-400 transition">Contacto</button>
+                    </div>
+
+                    <div className="flex gap-4 items-center">
+                        <button onClick={() => setPage('cart')} className="relative p-2 hover:bg-slate-800 rounded-full transition">
+                            <span className="text-xl">🛒</span>
+                            {cartCount > 0 && <span className="absolute -top-1 -right-1 bg-red-500 text-xs rounded-full px-2 py-0.5 animate-bounce">{cartCount}</span>}
+                        </button>
+                        
+                        {user ? (
+                            <div className="flex items-center gap-3 pl-4 border-l border-slate-700">
+                                <span className="text-sm text-gray-300 hidden sm:block">Hola, {user.name}</span>
+                                <button onClick={onLogout} className="text-sm bg-red-600 hover:bg-red-700 px-3 py-1 rounded transition">Salir</button>
+                            </div>
+                        ) : (
+                            <button onClick={() => setPage('login')} className="bg-blue-600 px-5 py-2 rounded font-bold hover:bg-blue-700 transition">Ingresar</button>
+                        )}
+                    </div>
                 </div>
-            </div>
-        </section>
+            </nav>
+        );
 
-    </main>
-    
-    <script>
-        const modalRegistro = document.getElementById("modalRegistro");
+        // Componente: Login
+        const Login = ({ onLogin }) => {
+            const [email, setEmail] = useState('');
+            const [pass, setPass] = useState('');
+            const [error, setError] = useState('');
 
-        function abrirRegistro() {
-            modalRegistro.style.display = "flex";
-        }
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                // Validación simulada
+                if (email === "admin@demo.com" && pass === "1234") {
+                    onLogin({ name: "Admin User", email });
+                } else {
+                    setError("Error: Usa admin@demo.com y clave 1234");
+                }
+            };
 
-        function cerrarRegistro() {
-            modalRegistro.style.display = "none";
-        }
+            return (
+                <div className="flex justify-center items-center min-h-[70vh] fade-in px-4">
+                    <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-100">
+                        <h2 className="text-3xl font-bold mb-2 text-center text-slate-800">Bienvenido</h2>
+                        <p className="text-center text-gray-500 mb-8">Ingresa a tu cuenta corporativa</p>
+                        
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div>
+                                <label className="block text-gray-700 text-sm font-bold mb-2">Correo Corporativo</label>
+                                <input type="email" value={email} onChange={e=>setEmail(e.target.value)} className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500 transition" placeholder="admin@demo.com" required />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+                                <input type="password" value={pass} onChange={e=>setPass(e.target.value)} className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500 transition" placeholder="1234" required />
+                            </div>
+                            {error && <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 text-sm">{error}</div>}
+                            <button type="submit" className="w-full bg-slate-900 text-white py-3 rounded-lg font-bold hover:bg-slate-800 transition transform hover:scale-[1.02]">Iniciar Sesión</button>
+                        </form>
+                        <div className="mt-6 text-center text-xs text-gray-400 bg-gray-50 p-2 rounded">
+                            <p>Credenciales Demo:</p>
+                            <p>User: <b>admin@demo.com</b> | Pass: <b>1234</b></p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
 
-        window.onclick = function(e) {
-            if (e.target === modalRegistro) {
-                cerrarRegistro();
-            }
-        }
+        // Componente: Catálogo
+        const Catalog = ({ addToCart }) => {
+            const [filter, setFilter] = useState("Todos");
+            const categories = ["Todos", ...new Set(PRODUCTS_DB.map(p => p.category))];
+
+            const filtered = filter === "Todos" ? PRODUCTS_DB : PRODUCTS_DB.filter(p => p.category === filter);
+
+            return (
+                <div className="container mx-auto p-6 fade-in min-h-screen">
+                    <div className="text-center mb-10">
+                        <h2 className="text-4xl font-bold text-slate-800 mb-4">Catálogo de Productos</h2>
+                        <p className="text-gray-600">Lo mejor en tecnología para tu empresa</p>
+                    </div>
+                    
+                    {/* Filtros */}
+                    <div className="flex flex-wrap justify-center gap-2 mb-10">
+                        {categories.map(cat => (
+                            <button key={cat} onClick={() => setFilter(cat)}
+                                className={`px-6 py-2 rounded-full text-sm font-medium transition ${filter === cat ? 'bg-slate-900 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-gray-100'}`}>
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {filtered.map(product => (
+                            <div key={product.id} className="bg-white rounded-xl shadow-sm hover:shadow-2xl transition duration-300 overflow-hidden group">
+                                <div className="relative overflow-hidden h-48">
+                                    <img src={product.img} alt={product.name} className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500" />
+                                </div>
+                                <div className="p-5">
+                                    <div className="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">{product.category}</div>
+                                    <h3 className="text-lg font-bold text-slate-800 mb-2 truncate">{product.name}</h3>
+                                    <div className="flex justify-between items-center mt-4">
+                                        <span className="text-xl font-bold text-slate-900">${product.price}</span>
+                                        <button onClick={() => addToCart(product)} className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition shadow-md">
+                                            + 
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // Componente: Carrito
+        const Cart = ({ cart, removeFromCart, clearCart }) => {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+            return (
+                <div className="container mx-auto p-6 fade-in max-w-5xl min-h-screen">
+                    <h2 className="text-3xl font-bold mb-8 text-slate-800">Carrito de Compras</h2>
+                    
+                    {cart.length === 0 ? (
+                        <div className="bg-white p-10 rounded-lg shadow text-center">
+                            <p className="text-gray-500 text-xl">Tu carrito está vacío.</p>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col lg:flex-row gap-8">
+                            <div className="flex-1 space-y-4">
+                                {cart.map((item, index) => (
+                                    <div key={index} className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                        <div className="flex items-center gap-4">
+                                            <img src={item.img} className="w-16 h-16 rounded object-cover" />
+                                            <div>
+                                                <h4 className="font-bold text-slate-800">{item.name}</h4>
+                                                <p className="text-gray-500 text-sm">${item.price}</p>
+                                            </div>
+                                        </div>
+                                        <button onClick={() => removeFromCart(index)} className="text-red-500 hover:text-red-700 text-sm font-semibold">Eliminar</button>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div className="lg:w-96">
+                                <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-100 sticky top-24">
+                                    <h3 className="text-xl font-bold mb-6">Resumen del Pedido</h3>
+                                    <div className="flex justify-between mb-2 text-gray-600"><span>Subtotal</span><span>${total}</span></div>
+                                    <div className="flex justify-between mb-6 text-gray-600"><span>IVA (19%)</span><span>${(total * 0.19).toFixed(2)}</span></div>
+                                    <div className="border-t pt-4 flex justify-between text-2xl font-bold text-slate-900 mb-6">
+                                        <span>Total</span>
+                                        <span>${(total * 1.19).toFixed(2)}</span>
+                                    </div>
+                                    <button onClick={() => { alert('Compra realizada con éxito!'); clearCart(); }} className="w-full bg-green-600 text-white py-4 rounded-lg font-bold hover:bg-green-700 transition shadow-lg mb-3">
+                                        Pagar Ahora
+                                    </button>
+                                    <button onClick={clearCart} className="w-full text-gray-500 text-sm hover:text-red-500">Vaciar Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        // Componente: Footer
+        const Footer = () => (
+            <footer className="bg-slate-900 text-gray-400 py-12 mt-auto">
+                <div className="container mx-auto px-6 grid md:grid-cols-4 gap-8">
+                    <div className="col-span-1 md:col-span-2">
+                        <h4 className="text-white text-xl font-bold mb-4">TechSolutions Corp.</h4>
+                        <p className="text-sm leading-relaxed max-w-xs">Líderes en importación y distribución de hardware empresarial. Conectando tu negocio con el futuro desde 2010.</p>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-4">Empresa</h4>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="#" className="hover:text-blue-400 transition">Sobre Nosotros</a></li>
+                            <li><a href="#" className="hover:text-blue-400 transition">Sostenibilidad</a></li>
+                            <li><a href="#" className="hover:text-blue-400 transition">Trabaja con nosotros</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-4">Ayuda</h4>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="#" className="hover:text-blue-400 transition">Soporte Técnico</a></li>
+                            <li><a href="#" className="hover:text-blue-400 transition">Garantías</a></li>
+                            <li><a href="#" className="hover:text-blue-400 transition">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="border-t border-slate-800 mt-10 pt-6 text-center text-xs">
+                    &copy; 2025 TechSolutions Corp. Todos los derechos reservados.
+                </div>
+            </footer>
+        );
+
+        // --- 3. LÓGICA PRINCIPAL (APP) ---
+        const App = () => {
+            // Estados globales
+            const [view, setView] = useState('home');
+            const [user, setUser] = useState(null);
+            const [cart, setCart] = useState([]);
+
+            // Funciones del carrito
+            const addToCart = (product) => {
+                setCart([...cart, product]);
+                // Pequeña notificación visual (alert simple)
+                alert(`Agregado: ${product.name}`);
+            };
+
+            const removeFromCart = (index) => {
+                const newCart = [...cart];
+                newCart.splice(index, 1);
+                setCart(newCart);
+            };
+
+            const clearCart = () => setCart([]);
+
+            // Router simple
+            const renderContent = () => {
+                switch(view) {
+                    case 'home':
+                        return (
+                            <div className="fade-in">
+                                <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-24 px-6 text-center">
+                                    <h1 className="text-5xl font-bold mb-6">Tecnología de Punta</h1>
+                                    <p className="text-xl text-gray-300 mb-8">Equipa tu empresa con el hardware más avanzado del mercado.</p>
+                                    <button onClick={() => setView('catalog')} className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-bold transition shadow-lg transform hover:scale-105">Ver Productos</button>
+                                </div>
+                                <div className="container mx-auto py-16 px-6">
+                                    <h3 className="text-2xl font-bold text-center mb-10 text-slate-800">¿Por qué elegirnos?</h3>
+                                    <div className="grid md:grid-cols-3 gap-8 text-center">
+                                        <div className="p-6 border rounded-xl hover:shadow-md transition"><div className="text-4xl mb-4">🚀</div><h4 className="font-bold mb-2">Envíos Express</h4><p className="text-sm text-gray-600">Despachos a todo el país en 24h.</p></div>
+                                        <div className="p-6 border rounded-xl hover:shadow-md transition"><div className="text-4xl mb-4">🛡️</div><h4 className="font-bold mb-2">Garantía Extendida</h4><p className="text-sm text-gray-600">3 años de garantía en laptops.</p></div>
+                                        <div className="p-6 border rounded-xl hover:shadow-md transition"><div className="text-4xl mb-4">💳</div><h4 className="font-bold mb-2">Pago Seguro</h4><p className="text-sm text-gray-600">Transacciones cifradas SSL.</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'login': return <Login onLogin={(u) => { setUser(u); setView('home'); }} />;
+                    case 'catalog': return <Catalog addToCart={addToCart} />;
+                    case 'cart': return <Cart cart={cart} removeFromCart={removeFromCart} clearCart={clearCart} />;
+                    case 'contact': return <div className="container mx-auto p-10 text-center min-h-[50vh] flex flex-col justify-center">
+                        <h2 className="text-3xl font-bold mb-4">Contáctanos</h2>
+                        <p className="text-gray-600">Email: contacto@techcorp.com | Tel: +1 234 567 890</p>
+                    </div>;
+                    default: return null;
+                }
+            };
+
+            return (
+                <div className="flex flex-col min-h-screen">
+                    <Navbar user={user} setPage={setView} cartCount={cart.length} onLogout={() => { setUser(null); setView('login'); setCart([]); }} />
+                    <main className="flex-grow bg-slate-50">
+                        {renderContent()}
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
-    
-    <footer class="footer">
-        <p>© 2025 NOVA XP. Todos los derechos reservados.</p>
-    </footer>
-
-    </body>
+</body>
 </html>
-
-
-
-
 
 
